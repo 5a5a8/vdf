@@ -1,4 +1,5 @@
 #include "argparser.h"
+#include "error.h"
 #include "globals.h"
 #include "help.h"
 #include <unistd.h>
@@ -216,8 +217,17 @@ parse_l_flag()
 
     l_high[j] = '\0';
 
-    if (l_low[0] != '\0') lFlaglow = strtoll(l_low, NULL, 10) - 1;
-    if (l_high[0] != '\0') lFlaghigh = strtoll(l_high, NULL, 10) - 1;
+    if (l_low[0] != '\0')
+	{
+		lFlaglow = strtoll(l_low, NULL, 10) - 1;
+		check_strtoll_error(lFlaglow+1);
+	}
+
+    if (l_high[0] != '\0')
+	{
+		lFlaghigh = strtoll(l_high, NULL, 10) - 1;
+		check_strtoll_error(lFlaghigh+1);
+	}
 
     if (strstr(arg_string, "-") == NULL) lFlaghigh = lFlaglow;
 

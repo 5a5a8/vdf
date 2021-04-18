@@ -8,10 +8,10 @@ CFLAGS = -Wextra -Wall
 
 LIBS = 
 
-_DEPS = argparser.h help.h globals.h dynamiclist.h fileparser.h lines.h
+_DEPS = argparser.h help.h globals.h dynamiclist.h fileparser.h lines.h error.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o argparser.o help.o dynamiclist.o fileparser.o lines.o
+_OBJ = main.o argparser.o help.o dynamiclist.o fileparser.o lines.o error.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
